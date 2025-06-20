@@ -1,6 +1,5 @@
 package com.example.cryptoandstocksapp.ui.home;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.cryptoandstocksapp.databinding.FragmentHomeBinding;
 import com.example.cryptoandstocksapp.R;
 
 
@@ -38,6 +36,10 @@ public class HomeFragment extends Fragment {
         homeViewModel.getCrypto().observe(getViewLifecycleOwner(), cryptos -> {
             if (cryptos != null && !cryptos.isEmpty()) {
                 String info = "BTC: $" + cryptos.get(0).current_price;
+                cryptoTextView.setText(info);
+            }
+            if (cryptos != null && !cryptos.isEmpty()) {
+                String info = "ETH: $" + cryptos.get(1).current_price;
                 cryptoTextView.setText(info);
             }
         });

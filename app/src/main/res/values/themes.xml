@@ -17,6 +17,9 @@
     <style name="Theme.CryptoAndStocksApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <item name="android:fontFamily">@font/sanfrancisco</item>"
+        <item name="fontFamily">@font/sanfrancisco</item>"
     </style>
 
     <style name="Theme.CryptoAndStocksApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

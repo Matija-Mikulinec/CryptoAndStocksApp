@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.cryptoandstocksapp.ui.home.NewsApi;
-
 import java.util.List;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeViewModel extends ViewModel {
 
@@ -56,7 +54,7 @@ public class HomeViewModel extends ViewModel {
                 .build();
 
         NewsApi api = retrofit.create(NewsApi.class);
-        api.getTopHeadlines("us", "YOUR_NEWSAPI_KEY").enqueue(new Callback<NewsResponse>() {
+        api.getTopHeadlines("us", "249cb7bc37ef4b4bbcbfb485c55ccc42").enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().articles.isEmpty()) {
