@@ -15,13 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<List<Crypto>> cryptoLiveData = new MutableLiveData<>();
-    private MutableLiveData<String> newsSnippetLiveData = new MutableLiveData<>();
+    private MutableLiveData<Article> newsSnippetLiveData = new MutableLiveData<>();
 
     public LiveData<List<Crypto>> getCrypto() {
         return cryptoLiveData;
     }
 
-    public LiveData<String> getNewsSnippet() {
+    public LiveData<Article> getNewsSnippet() {
         return newsSnippetLiveData;
     }
 
@@ -58,7 +58,12 @@ public class HomeViewModel extends ViewModel {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().articles.isEmpty()) {
-                    newsSnippetLiveData.postValue(response.body().articles.get(0).title);
+                    Article art=new Article();
+                    art.title=response.body().articles.get(0).title;
+                    art.description=response.body().articles.get(0).description;
+                    art.url=response.body().articles.get(0).url;
+                    art.urlToImage=response.body().articles.get(0).urlToImage;
+                    newsSnippetLiveData.postValue(art);
                 }
             }
 

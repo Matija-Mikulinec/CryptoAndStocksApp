@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cryptoandstocksapp.R;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
 
         TextView cryptoTextView = view.findViewById(R.id.text_crypto);
         TextView newsTextView = view.findViewById(R.id.text_news);
+        TextView stocksCryptoData = view.findViewById(R.id.sticksCryptoData);
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -40,15 +42,16 @@ public class HomeFragment extends Fragment {
             }
             if (cryptos != null && !cryptos.isEmpty()) {
                 String info = "ETH: $" + cryptos.get(1).current_price;
-                cryptoTextView.setText(info);
+                stocksCryptoData.setText(info);
             }
         });
 
-        homeViewModel.getNewsSnippet().observe(getViewLifecycleOwner(), snippet -> {
-            if (snippet != null) {
-                newsTextView.setText(snippet.toString());
+        homeViewModel.getNewsSnippet().observe(getViewLifecycleOwner(), art -> {
+            if (art != null) {
+                newsTextView.setText(art.title);
             }
         });
+
 
         homeViewModel.fetchAll();
     }
