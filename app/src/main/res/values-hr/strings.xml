@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CryptoAndStocksApp</string>
+    <string name="change_language">Promijeni jezik</string>
+    <string name="homepage_title">Početna stranica</string>
+    <string name="welcome_user">Dobrodošao korisniče</string>
+    <string name="crypto_title">Kriptovalute</string>
+    <string name="chart_placeholder">Grafikon ide ovdje</string>
+    <string name="crypto_data_label">Podaci o kriptovalutama</string>
+    <string name="daily_change">Dnevna promjena (%)</string>
+    <string name="stocks_title">Dionice</string>
+    <string name="summary_title">Dnevni sažetak</string>
+    <string name="news_summary">Novosti</string>
+</resources>

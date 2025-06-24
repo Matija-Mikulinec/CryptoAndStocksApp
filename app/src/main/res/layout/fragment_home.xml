@@ -15,15 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Crypto section -->
-
-            <!-- News section -->
-
+            <Button
+                android:id="@+id/button_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_language"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_horizontal"/>
 
             <!-- Header -->
             <TextView
                 android:id="@+id/text_title"
-                android:text="Homepage"
+                android:text="@string/homepage_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -32,7 +35,7 @@
 
             <TextView
                 android:id="@+id/text_welcome"
-                android:text="Welcome user"
+                android:text="@string/welcome_user"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -41,7 +44,7 @@
 
             <!-- Crypto section -->
             <TextView
-                android:text="Crypto"
+                android:text="@string/crypto_title"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
@@ -59,7 +62,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Chart goes here"
+                    android:text="@string/chart_placeholder"
                     android:gravity="center"
                     android:textStyle="bold" />
 
@@ -74,12 +77,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Crypto data"
+                        android:text="@string/crypto_data_label"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/cryptoChange"
-                        android:text="Daily % change"
+                        android:text="@string/daily_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -87,11 +90,11 @@
 
             <!-- Stocks section -->
             <TextView
-                android:text="Stocks"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/stocks_title"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,7 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Chart goes here"
+                    android:text="@string/chart_placeholder"
                     android:gravity="center"
                     android:textStyle="bold" />
 
@@ -116,16 +119,16 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/sticksCryptoData"
-                        android:layout_width="match_parent"
+                        android:id="@+id/stockCryptoData"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Crypto data"
+                        android:text="@string/crypto_data_label"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/stockChange"
-                        android:text="Daily % change"
+                        android:text="@string/daily_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -133,7 +136,7 @@
 
             <!-- News section -->
             <TextView
-                android:text="Daily Summary"
+                android:text="@string/summary_title"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
@@ -146,15 +149,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="#DDDDDD"
-                android:text="News summary here"
+                android:text="@string/news_summary"
                 android:textSize="16sp"
                 android:padding="10dp"/>
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

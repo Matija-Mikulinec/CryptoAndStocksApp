@@ -1,29 +1,38 @@
 package com.example.cryptoandstocksapp;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cryptoandstocksapp.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Button btnSwitch = findViewById(R.id.button_language);
+        btnSwitch.setOnClickListener(v -> {
+            String current = com.example.cryptoandstocksapp.util.LocaleHelper.getLocale(this);
+            String next = current.equals("en") ? "hr" : "en";
+            com.example.cryptoandstocksapp.util.LocaleHelper.setLocale(this, next);
+            recreate();
+        });
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -63,4 +72,18 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String lang = newBase
+                .getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .getString("Locale.Helper.Selected.Language", "en");
+        super.attachBaseContext(com.example.cryptoandstocksapp.util.MyContextWrapper.wrap(newBase, lang));
+    }
+
+
+
+
+
+
 }
