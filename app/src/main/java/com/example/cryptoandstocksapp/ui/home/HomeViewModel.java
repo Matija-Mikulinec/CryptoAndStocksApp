@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<List<Crypto>> cryptoLiveData = new MutableLiveData<>();
-    private MutableLiveData<Article> newsSnippetLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Crypto>> cryptoLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Article> newsSnippetLiveData = new MutableLiveData<>();
 
     public LiveData<List<Crypto>> getCrypto() {
         return cryptoLiveData;
@@ -32,7 +32,8 @@ public class HomeViewModel extends ViewModel {
                 .build();
 
         CoinGeckoApi api = retrofit.create(CoinGeckoApi.class);
-        api.getCryptoMarkets("usd", "bitcoin,ethereum").enqueue(new Callback<List<Crypto>>() {
+        api.getCryptoMarkets("usd", "bitcoin", "market_cap_desc", 1, 100, false)
+                .enqueue(new Callback<List<Crypto>>() {
             @Override
             public void onResponse(Call<List<Crypto>> call, Response<List<Crypto>> response) {
                 if (response.isSuccessful()) {
@@ -54,15 +55,15 @@ public class HomeViewModel extends ViewModel {
                 .build();
 
         NewsApi api = retrofit.create(NewsApi.class);
-        api.getTopHeadlines("us", "249cb7bc37ef4b4bbcbfb485c55ccc42").enqueue(new Callback<NewsResponse>() {
+        api.getTopHeadlines("us", "business", 10, "249cb7bc37ef4b4bbcbfb485c55ccc42").enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().articles.isEmpty()) {
-                    Article art=new Article();
-                    art.title=response.body().articles.get(0).title;
-                    art.description=response.body().articles.get(0).description;
-                    art.url=response.body().articles.get(0).url;
-                    art.urlToImage=response.body().articles.get(0).urlToImage;
+                    Article art = new Article();
+                    art.title = response.body().articles.get(0).title;
+                    art.description = response.body().articles.get(0).description;
+                    art.url = response.body().articles.get(0).url;
+                    art.urlToImage = response.body().articles.get(0).urlToImage;
                     newsSnippetLiveData.postValue(art);
                 }
             }
@@ -80,7 +81,7 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    private MutableLiveData<Object> text = new MutableLiveData<>();
+    private final MutableLiveData<Object> text = new MutableLiveData<>();
 
     public LiveData<Object> getText() {
         return text;

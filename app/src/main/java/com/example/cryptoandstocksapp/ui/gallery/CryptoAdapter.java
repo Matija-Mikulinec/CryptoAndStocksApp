@@ -38,7 +38,7 @@ public class CryptoAdapter extends RecyclerView.Adapter<CryptoAdapter.ViewHolder
 
         Picasso.get()
                 .load(crypto.image)
-                .placeholder(R.drawable.ic_crypto_placeholder)
+                .placeholder(R.drawable.bitcoin)
                 .into(holder.icon);
     }
 

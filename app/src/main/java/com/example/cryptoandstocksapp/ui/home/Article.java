@@ -5,5 +5,10 @@ public class Article {
     public String description;
     public String url;
     public String urlToImage;
-    // etc.
+    public String publishedAt;
+    public Source source;
+
+    public static class Source {
+        public String name;
+    }
 }

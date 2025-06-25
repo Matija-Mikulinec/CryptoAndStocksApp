@@ -18,8 +18,8 @@ import com.example.cryptoandstocksapp.util.LocaleHelper;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private TextView cryptoTextView, stockCryptoData, newsTextView;
+    private TextView btcPriceView, ethPriceView, newsTextView;
+    private Button languageButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,18 +31,20 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        cryptoTextView = view.findViewById(R.id.text_crypto);
-        stockCryptoData = view.findViewById(R.id.stockCryptoData);
+        // Initialize views with correct IDs
+        btcPriceView = view.findViewById(R.id.text_crypto);
+        ethPriceView = view.findViewById(R.id.stockCryptoData);
         newsTextView = view.findViewById(R.id.text_news);
+        languageButton = view.findViewById(R.id.button_language);
 
-        Button languageButton = view.findViewById(R.id.button_language);
         languageButton.setOnClickListener(v -> toggleLanguage());
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         homeViewModel.getCrypto().observe(getViewLifecycleOwner(), cryptos -> {
             if (cryptos != null && !cryptos.isEmpty()) {
-                cryptoTextView.setText(String.format("BTC: $%.2f", cryptos.get(0).current_price));
-                stockCryptoData.setText(String.format("ETH: $%.2f", cryptos.get(1).current_price));
+                btcPriceView.setText(String.format("$%,.2f", cryptos.get(0).currentPrice));
+                ethPriceView.setText(String.format("ETH: $%,.2f", cryptos.get(1).currentPrice));
             }
         });
 
